@@ -4,7 +4,7 @@ function Footer() {
       <div className="footer-copyright">
         <div className="container">
         © {new Date().getFullYear()} Copyright Text
-        <a className="grey-text text-lighten-4 right" href="!#" rel="noreferrer" target="_blank">GitHub Repo</a>
+        <a className="grey-text text-lighten-4 right" href="https://github.com/khiukv/pokedex" rel="noreferrer" target="_blank">GitHub</a>
         </div>
       </div>
     </footer>

@@ -8,7 +8,7 @@ function Header() {
         <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><Link to="/">Home</Link></li>
           <li><Link to="/my-pokemons">My Pokemons</Link></li>
-          <li><a href="!#" rel="noreferrer" target="_blank">GitHub Repo</a></li>
+          <li><a href="https://github.com/khiukv/pokedex" rel="noreferrer" target="_blank">GitHub</a></li>
         </ul>
       </div>
     </nav>
