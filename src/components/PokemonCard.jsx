@@ -1,4 +1,5 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import {PokedexContext} from '../context';
 import {getPokemonById} from '../api';
 
 function PokemonCard(props) {
@@ -6,24 +7,31 @@ function PokemonCard(props) {
   const [showDetails, setShowDetails] = useState(false);
   const [pokemonsDetails, setPokemonsDetails] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
+  const {myPokemonsHandler, activeIndexes} = useContext(PokedexContext);
 
   useEffect(() => {
     getPokemonById(id).then(data => {
       setPokemonsDetails(data);
       setLoaded(true);
     });
-  }, [id]);
+    // eslint-disable-next-line
+  }, [activeIndexes]);
 
-  const clickHandler = () => {
+  const showDetailsHandler = () => {
     setShowDetails(!showDetails);
   }
-  
+
+  const myPokemonsClickHandler = (event) => {
+    event.stopPropagation();
+    myPokemonsHandler(id);
+  }
+
   return (
-    <div className={`card-wrap ${showDetails ? 'active' : ''}`} onClick={clickHandler}>
+    <div className={`card-wrap ${showDetails ? 'active' : ''}`} onClick={showDetailsHandler}>
       <div className="card-flipper">
         <div className="card front">
           <div className="favorite-icon">
-            <i className="material-icons active">favorite_border</i>
+            <i className={`material-icons ${activeIndexes.includes(id) ? 'active' : ''}`} onClick={myPokemonsClickHandler}>favorite</i>
           </div>
           <div className="card-image">
             <img src={image} alt={name}/>
@@ -35,7 +43,7 @@ function PokemonCard(props) {
 
         <div className="card back">
         <div className="favorite-icon">
-            <i className="material-icons active">favorite_border</i>
+            <i className={`material-icons ${activeIndexes.includes(id) ? 'active' : ''}`} onClick={myPokemonsClickHandler}>favorite</i>
           </div>
           <div className="card-content">
             <span className="card-title">{name}</span>

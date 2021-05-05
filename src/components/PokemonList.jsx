@@ -1,8 +1,10 @@
 
+import {useContext} from 'react';
+import {PokedexContext} from '../context';
 import {PokemonCard} from './PokemonCard';
 
-function PokemonList(props) {
-  const {pokemons} = props;
+function PokemonList() {
+  const {pokemons = []} = useContext(PokedexContext);
   return (
     <div className="pokemon-list">
       {pokemons.map(item => {

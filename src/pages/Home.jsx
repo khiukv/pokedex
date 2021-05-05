@@ -1,19 +1,21 @@
 import {getAllPokemons} from '../api';
-import {useState, useEffect} from 'react';
+import {useEffect, useContext} from 'react';
+import {PokedexContext} from '../context';
 import {PokemonList} from '../components/PokemonList';
 
 function Home() {
-  const [pokemons,setPokemons] = useState([]);
+  const {setPokemons} = useContext(PokedexContext);
 
-  useEffect(() => {
+  useEffect(function setPokemonsState() {
     getAllPokemons().then(data => {
       setPokemons(data);
     });
-  }, [pokemons]);
+    // eslint-disable-next-line
+  }, []);
   return (
     <div className="container content">
-      <h1 className="main-title">My Pokemons</h1>
-      <PokemonList pokemons={pokemons} />
+      <h1 className="main-title">Pokedex</h1>
+      <PokemonList />
     </div>
   );
 }

@@ -16,6 +16,7 @@ const getPokemonById = async (id) => {
   const url = API_URL + id;
   const res = await fetch(url);
   const pokemons = await res.json();
+  
   return await pokemons;
 }
 
